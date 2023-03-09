@@ -23,6 +23,9 @@ mongoose.connect(process.env.MONGO_URI, {
 })
 .then(() => {
     console.log("DB Connetion Successfull");
+    app.listen(PORT, () => {
+        console.log("server running");
+    });
 })
 .catch((err) => {
     console.log(err.message);
@@ -37,8 +40,4 @@ app.use('/api/logs', handleLog);
 
 app.get('*',function(req,res){
     res.sendFile(path.join(__dirname+"/client/build/index.html"))
-});
-
-app.listen(PORT, () => {
-    console.log("server running");
 });
