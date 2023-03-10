@@ -4,7 +4,7 @@ const Client = require('../models/clients');
 const router = express.Router();
 
 router.post('/', (req, res)=>{
-    const client = Client.find({_id: req.body.clientId})
+    const client = Client.find({_id: req.body.Id})
     const log = Log({
         date: req.body.date,
         body: `${req.body.title} - against ${client.fullname}`
