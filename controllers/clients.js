@@ -47,8 +47,8 @@ async function getAllClients(req, res) {
         const data = await findAllClient();
         let rdata = [];
         for(let i = 0; i < data.length; i++){
-            let orders = await findByClientId(data[i]._id );
-            let payments = await findPaymentByClientId(data[i]._id);
+            let orders = await findByClientId(data[i].id );
+            let payments = await findPaymentByClientId(data[i].id);
             let total=0,paid=0;
             for(let j = 0; j < orders.length; j++){
                 let sum = 0;
@@ -61,7 +61,7 @@ async function getAllClients(req, res) {
                 paid += payments[k].amount;
             }
             rdata.push({
-                _id: data[i]._id, 
+                id: data[i].id, 
                 fullname: data[i].fullname,
                 nickname: data[i].nickname,
                 address: data[i].address,

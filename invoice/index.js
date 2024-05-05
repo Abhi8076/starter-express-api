@@ -1,7 +1,7 @@
 var easyinvoice = require('easyinvoice');
 
 async function invoice(client, order){
-    let d = new Date(order.date);
+    let d = new Date(order.createdAt);
     let date = d.getDate()+"-"+(d.getMonth()+1)+"-"+d.getFullYear();
     let products = order.items.map((o)=>{
         return {
@@ -44,7 +44,7 @@ var data = {
     },
     "information": {
         // Invoice number
-        "number": `${order._id}`,
+        "number": `${order.id}`,
         // Invoice data
         "date": `${date}`
         // Invoice due date

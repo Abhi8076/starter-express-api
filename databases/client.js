@@ -1,22 +1,34 @@
-const Client = require('../models/clients');
+const Client = require('../models/Clients');
 
 async function findAllClient() {
-    return Client.find({});
+    return Client.findAll();
 }
 
 async function findOneClient(id) {
-    return Client.findById(id);
+    return Client.findByPk(id);
 }
 
 async function createClient(client) {
     return Client.create(client);
 }
 
-async function search_Client(searchParam) {
-    return Client.find(
-        { $text: { $search: searchParam } },
-        { score: { $meta: "textScore" } }
-     ).sort( { score: { $meta: "textScore" } } );
+async function search_Client(query) {
+    return Client.findAll({
+        where: {
+            $or: [
+                {
+                    fullname: {
+                        like: '%' + query + '%'
+                    },
+                },
+                {
+                    nickname: {
+                        like: '%' + query + '%'
+                    },
+                }
+            ]
+        }
+    });
 }
 
 module.exports = {

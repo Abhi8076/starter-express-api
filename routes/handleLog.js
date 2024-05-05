@@ -1,6 +1,6 @@
 const express = require('express');
 const Log = require('../models/log');
-const Client = require('../models/clients');
+const Client = require('../models/Clients');
 const router = express.Router();
 
 router.post('/', (req, res)=>{

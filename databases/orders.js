@@ -1,19 +1,26 @@
-const { Order } = require('../models/orders');
+const Orders = require('../models/Orders');
 
 async function findAllOrders() {
-    return Order.find({});
+    return Orders.findAll();
 }
 
 async function findByClientId(id) {
-    return Order.find({clientId: id});
+    return Orders.findAll({
+        where: {clientId: id}
+    });
 }
 
 async function findOneOrder(id) {
-    return Order.findById(id);
+    return Orders.findByPk(id);
+}
+
+async function createMOrder(id) {
+    return Orders.create(id);
 }
 
 module.exports = {
     findAllOrders,
     findByClientId,
-    findOneOrder
+    findOneOrder,
+    createMOrder
 };

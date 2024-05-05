@@ -1,7 +1,9 @@
-const Payment = require('../models/payment');
+const Payment = require('../models/Payment');
 
 async function findPaymentByClientId(id) {
-    return Payment.find({clientId: id});
+    return Payment.findAll({
+        where : {clientId: id}
+    });
 }
 
 async function createPayment(pay) {

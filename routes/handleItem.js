@@ -1,9 +1,9 @@
 const express = require('express');
-const Item = require('../models/items');
+const Items = require('../models/Items');
 const router = express.Router();
 
 router.post('/', (req, res) => {
-    var item = Item({itemName: req.body.item});
+    var item = Items({itemName: req.body.item});
     item.save()
     .then((data)=>{
         res.status(200).send(data);
@@ -12,7 +12,7 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-    Item.find({})
+    Items.findAll()
     .then((data)=>{
         data.sort(function (a, b) {
             return a.itemName.localeCompare(b.itemName);
